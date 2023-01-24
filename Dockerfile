@@ -8,4 +8,5 @@ FROM openjdk:17-alpine
 ARG JAR_FILE=target/*.jar
 WORKDIR /opt/app
 COPY --from=maven /usr/src/app/${JAR_FILE} /opt/app/app.jar
-ENTRYPOINT ["java","-Dspring.profiles.active=deploy","-jar","/opt/app/app.jar"]
+#ENTRYPOINT ["java","-Dspring.profiles.active=deploy","-jar","/opt/app/app.jar"]
+ENTRYPOINT ["java","-jar","/opt/app/app.jar"]
