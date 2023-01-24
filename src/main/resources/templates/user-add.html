@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>General Form</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+                        <li class="breadcrumb-item active">Employes</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Formulaire</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form role="form" method="post" th:action="@{/saved}" th:object="${employer}">
+                            <input th:field="*{id}" type="hidden"/>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Numéro Badge</label>
+                                    <input class="form-control" id="email" placeholder="Entrer le numéro de badge"
+                                           type="number" th:field="*{numBadge}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>CNIE</label>
+                                    <input class="form-control" id="cine" placeholder="Entrer CINE"
+                                           type="text" th:field="*{CINE}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Nom</label>
+                                    <input class="form-control" id="username" placeholder="Entrer le nom"
+                                           type="text" th:field="*{nom}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Prenom</label>
+                                    <input class="form-control" id="password" placeholder="Entrer le prenom"
+                                           type="text" th:field="*{prenom}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">DATE NAISSANCE</label>
+                                    <input class="form-control" id="date_naissance" placeholder="Entrer la date de naissance"
+                                           type="date" th:field="*{date_naissance}">
+                                </div>
+                                <div class="form-group">
+                                    <label >Departement</label>
+                                    <select class="form-control" th:field="*{departement.code}" >
+                                        <option th:each="departement : ${listdepartement}"
+                                                th:value="${departement.code}"
+                                                th:text="${departement.libelle}"></option>
+
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label >Fonction</label>
+                                    <select class="form-control" th:field="*{fonction.code}" >
+                                        <option th:each="fonction : ${listfonction}"
+                                                th:value="${fonction.code}"
+                                                th:text="${fonction.libelle}"></option>
+
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label >DISPONIBILITE</label>
+                                    <select class="form-control" th:field="*{disponibilite.code}">
+                                        <option th:each="disponibilite : ${listdisponibilite}"
+                                                th:value="${disponibilite.code}"
+                                                th:text="${disponibilite.libelle}"></option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+<th:block layout:fragment="script">
+    <script>
+        console.log("Add User");
+    </script>
+</th:block>
+
+</body>
+</html>

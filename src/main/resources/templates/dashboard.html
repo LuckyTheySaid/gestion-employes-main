@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <!-- chartjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <!-- canvasjs -->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</head>
+<body>
+<div layout:fragment="content">
+
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Dashboard</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard v1</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3><span th:text="${#lists.size(listemployers)}"></span></h3>
+
+                            <p>TOTALE EMPLOYES</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion-ios-people" style="    top: 0px;!important;"></i>
+                        </div>
+                        <a class="small-box-footer" href="/user/listemployes">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3><span th:text="${getdisponibleemp}"/><sup style="font-size: 10px"></sup></h3>
+
+                            <p>DISPONBILE EMPLOYES</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion-checkmark-circled" style="    top: 0px;!important;"></i>
+                        </div>
+                        <a class="small-box-footer" href="/user/listemployes">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3><span th:text="${getindisponibleemp}"/></h3>
+
+                            <p>INDISPONBILE EMPLOYES</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion-alert-circled" style="    top: 0px;!important;"></i>
+                        </div>
+                        <a class="small-box-footer" href="/user/listemployes">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3><span th:text="${getfonctioncount}"/></h3>
+
+                            <p>NOMBRE FONCTIONS</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion-ios-cog" style="    top: 0px;!important;"></i>
+                        </div>
+                        <a class="small-box-footer" href="/user/listfonction">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+
+    </section>
+
+
+    <div class="modal-body row">
+        <div class="col-md-6">
+            <canvas id="myChart" width="150" height="100"></canvas>
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                var labels = [];
+                var counts = [];
+                /*[# th:each="fonctionCount : ${fonctionCounts}"]*/
+                labels.push([[${fonctionCount.libelle}]]);
+                counts.push([[${fonctionCount.count}]]);
+                /*[/]*/
+                /*]]>*/
+            </script>
+            <!-- End Main content -->
+            <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Nombre',
+                            data: counts,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Nombre Employes'
+                                },
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Fonctions'
+                                }
+                            }]
+                        }
+                    }
+                });
+            </script>
+        </div>
+        <div class="col-md-6">
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <script th:inline="javascript">
+                var number1 = [[${getdisponibleemp}]];
+                var number2 = [[${getindisponibleemp}]];
+            </script>
+            <script>
+                window.onload = function() {
+
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        backgroundColor: "#f4f6f9",
+                        animationEnabled: true,
+                        title: {
+                            text: "Statistique Des Employes"
+                        },
+                        data: [{
+                            type: "pie",
+                            startAngle: 240,
+                            yValueFormatString: "##0\"\"",
+                            indexLabel: "{label} {y}",
+                            dataPoints: [
+                                { y: number1 , label : "Disponbile :"},
+                                { y: number2 , label : "Indisponbile :"}
+                            ]
+                        }]
+                    });
+                    chart.render();
+
+                }
+            </script>
+
+        </div>
+    </div>
+
+
+
+<th:block layout:fragment="script">
+    <script>
+        console.log("Home Page");
+    </script>
+</th:block>
+
+</div></body>
+</html>

@@ -1,0 +1,5 @@
+local : dHKp9PpPJ0ooGWODZg
+en ligne : @U2Jbxht^p^zFW05s1
+
+
+http://localhost/add_vhost.php?lang=french

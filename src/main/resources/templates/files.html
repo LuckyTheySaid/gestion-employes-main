@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Centre d'importation des fichiers</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Liste des fichiers</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{'/'}">Acceuil</a></li>
+            <li class="breadcrumb-item active">Liste des fichiers</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Liste des fichiers</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="alert alert-success" role="alert" th:text="${message}" th:if="${message}"></div>
+
+
+              <div th:if="${files.size() > 0}">
+                <table class="table table-hover">
+                  <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Nom Fichiers</th>
+                    <th scope="col">Lien</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="file : ${files}">
+                    <td>[[${file.name}]]</td>
+                    <td><a th:href="@{${file.url}}" class="btn btn-primary">Download</a></td>
+                    <td>
+                      <a id="btnDelete" th:href="@{'/files/delete/' + ${file.name}}" th:fileName="${file.name}" class="btn btn-danger" >Supprimer</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div th:unless="${files.size() > 0}">
+                <span>No files found!</span>
+              </div>
+            </div>
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+  </section></div>
+</div></div></div></div></div>
+
+
+
+
+  </section>
+  <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+  <script>
+    console.log("List User");
+    var user = {};
+
+    $(document).ready(function () {
+
+      /** TODO: Function OnClick **/
+
+
+      /** TODO: Function **/
+
+
+      /** TODO: OnLoad **/
+      user.findAll = function () {
+
+        $.ajax({
+          url: "http://localhost:1111/api/v1/user",
+          type: "GET",
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+          },
+          success: function (data) {
+            console.log(data);
+            var event_data = '';
+            $.each(data.user, function (index, value) {
+              /*console.log(value);*/
+              event_data += '<tr>';
+              event_data += '<td>' + value.name + '</td>';
+              event_data += '<td>' + value.id + '</td>';
+              event_data += '</tr>';
+            });
+            $("#list_table_json").append(event_data);
+
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            console.log(responseText);
+            console.log('Error: ' + textStatus + ' - ' + errorThrown);
+          }
+        });
+
+      };
+
+      user.findAll();
+
+
+    });
+  </script>
+</th:block>
+
+</body>
+
+</html>
