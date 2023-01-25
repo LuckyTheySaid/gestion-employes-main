@@ -22,7 +22,7 @@ public class Employer {
     private String CINE;
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern="dd-MM-yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date date_naissance;
 
     @Column(nullable = false)
