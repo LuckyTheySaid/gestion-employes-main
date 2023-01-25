@@ -67,19 +67,7 @@ public class AdminPageController {
 
         return "user-add";
     }
-    @RequestMapping(value = "/saved", method = RequestMethod.POST)
-    public String saveEmp(@ModelAttribute("employer") Employer emp, RedirectAttributes redirAttrs) {
-        redirAttrs.addFlashAttribute("message", "Employe bien ajouter.");
-        service.save(emp);
 
-        return "redirect:/user/listemployes";
-    }
-    @GetMapping("/deleteEmployee")
-    public String deleteEmployee(@RequestParam Long employeeId, RedirectAttributes redirAttrs) {
-        redirAttrs.addFlashAttribute("empsupprimer", "Employe bien supprimer.");
-        eRepo.deleteById(employeeId);
-        return "redirect:/user/listemployes";
-    }
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditemployer(@PathVariable(name = "id") Long id, Model model) {
         ModelAndView mav = new ModelAndView("/user-add");
@@ -94,6 +82,21 @@ public class AdminPageController {
         return mav;
 
     }
+
+    @RequestMapping(value = "/saved", method = RequestMethod.POST)
+    public String saveEmp(@ModelAttribute("employer") Employer emp, RedirectAttributes redirAttrs) {
+        redirAttrs.addFlashAttribute("message", "Employe bien ajouter.");
+        service.save(emp);
+
+        return "redirect:/user/listemployes";
+    }
+    @GetMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam Long employeeId, RedirectAttributes redirAttrs) {
+        redirAttrs.addFlashAttribute("empsupprimer", "Employe bien supprimer.");
+        eRepo.deleteById(employeeId);
+        return "redirect:/user/listemployes";
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
