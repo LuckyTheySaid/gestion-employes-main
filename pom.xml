@@ -8,11 +8,11 @@
         <version>2.7.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.hendisantika</groupId>
-    <artifactId>springboot-adminlte3-template</artifactId>
+    <groupId>com.gestemplyes</groupId>
+    <artifactId>springboot-gestion-employes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-adminlte3-template</name>
-    <description>springboot-adminlte3-template</description>
+    <name>springboot-gestion-employes</name>
+    <description>springboot-gestion-employes</description>
     <properties>
         <java.version>11</java.version>
     </properties>
