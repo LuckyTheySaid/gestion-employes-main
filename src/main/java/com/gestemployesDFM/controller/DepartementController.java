@@ -46,9 +46,9 @@ public class DepartementController {
         return "user-listdepartement";
     }
     @GetMapping("/user/getempcountbydep")
-    public String getempcountbyfon(Model model){
+    public String getempcountbyemp(Model model){
         List<DepartementCountDTO> departementCount = depservice.getDepartementCounts();
-        model.addAttribute("fonctionCounts", departementCount);
-        return "user-getempcountbyfon";
+        model.addAttribute("departementCounts", departementCount);
+        return "user-getempcountbydep";
     }
 }
