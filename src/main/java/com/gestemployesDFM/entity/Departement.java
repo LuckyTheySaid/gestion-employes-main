@@ -14,18 +14,22 @@ public class Departement {
     private String libelle;
 
     public Long getCode() {
+
         return code;
     }
 
     public void setCode(Long code) {
+
         this.code = code;
     }
 
     public String getLibelle() {
+
         return libelle;
     }
 
     public void setLibelle(String libelle) {
+
         this.libelle = libelle;
     }
 }

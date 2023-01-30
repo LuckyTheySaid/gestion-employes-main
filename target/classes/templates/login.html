@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <title>Admin LTE 3 | Log in</title>
+    <title>Admin Socièté DFM | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
@@ -24,19 +24,19 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE 3</a>
+        <a href="../../index2.html"><b>Admin</b>Socièté DFM</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg" th:if="${param.error}">
-                User/password is invalid.
+                L'utilisateur/mot de passe est invalide.
             </p>
             <p class="login-box-msg" th:if="${param.logout}">
-                You have been logged out.
+                Vous avez été déconnecté.
             </p>
 
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">Connectez-vous pour démarrer votre session</p>
 
             <form method="post" th:action="@{/login}">
                 <div class="input-group mb-3">
@@ -66,7 +66,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
-                        <button class="btn btn-primary btn-block" type="submit">Sign In</button>
+                        <button class="btn btn-primary" type="submit">Connexion</button>
                     </div>
                     <!-- /.col -->
                 </div>

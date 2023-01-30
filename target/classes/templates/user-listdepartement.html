@@ -21,7 +21,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a th:href="@{'/'}">Acceuil</a></li>
-                        <li class="breadcrumb-item active">Liste Des Departement</li>
+                        <li class="breadcrumb-item active">Liste Des Departements</li>
                     </ol>
                 </div>
             </div>
@@ -35,11 +35,11 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Liste Des Fonctions</h3>
+                            <h3 class="card-title">Liste Des Departements</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <div class="alert alert-success" role="alert" th:text="${fonajouter}" th:if="${fonajouter}"></div>
+                            <div class="alert alert-success" role="alert" th:text="${depajouter}" th:if="${depajouter}"></div>
                             <div class="alert alert-danger" role="alert" th:text="${supprimer}" th:if="${supprimer}"></div>
                             <table class="table table-bordered">
                                 <thead>
@@ -52,7 +52,7 @@
                                 <tr  th:each="departement : ${listdepartement}">
                                     <td th:text="${departement.libelle}"></td>
                                     <td>
-                                        <a th:href="@{'/delete/' + ${departement.code}}" class="btn btn-danger">Supprimer</a>
+                                        <a th:href="@{'/deletedepartement/' + ${departement.code}}" class="btn btn-danger">Supprimer</a>
 
 
                                     </td>

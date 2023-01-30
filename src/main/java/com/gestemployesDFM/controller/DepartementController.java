@@ -23,13 +23,12 @@ public class DepartementController {
         return "user-adddepartement";
     }
 
-   /* @RequestMapping("/delete/{code}")
-    public String supprimerdepartement(@PathVariable(name = "code") int code, RedirectAttributes redirAttrs) {
+    @RequestMapping("/deletedepartement/{code}")
+    public String supprimerfonction(@PathVariable(name = "code") int code, RedirectAttributes redirAttrs) {
         redirAttrs.addFlashAttribute("supprimer", "Departement bien supprimer.");
         depservice.delete(code);
-        return "redirect:/user-listdepartement";
-    }*/
-
+        return "redirect:/user/listdepartement";
+    }
 
     @RequestMapping(value = "/ajouterdepartement", method = RequestMethod.POST)
     public String savefct(@ModelAttribute("fonction") Departement dpt, RedirectAttributes redirAttrs) {
