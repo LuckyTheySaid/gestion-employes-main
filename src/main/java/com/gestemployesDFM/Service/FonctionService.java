@@ -33,6 +33,7 @@ public class FonctionService {
         return repo.getcountfonction();
     }
     public List<FonctionCountDTO> getFonctionCounts() {
+
         return repo.getFonctionCounts();
     }
 

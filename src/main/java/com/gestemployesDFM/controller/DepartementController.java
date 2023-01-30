@@ -1,6 +1,8 @@
 package com.gestemployesDFM.controller;
 
 import com.gestemployesDFM.Service.DepartementService;
+import com.gestemployesDFM.dto.DepartementCountDTO;
+import com.gestemployesDFM.dto.FonctionCountDTO;
 import com.gestemployesDFM.entity.Departement;
 import com.gestemployesDFM.entity.Fonction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +44,11 @@ public class DepartementController {
         List<Departement> listdepartement = depservice.listAll();
         model.addAttribute("listdepartement", listdepartement);
         return "user-listdepartement";
+    }
+    @GetMapping("/user/getempcountbydep")
+    public String getempcountbyfon(Model model){
+        List<DepartementCountDTO> departementCount = depservice.getDepartementCounts();
+        model.addAttribute("fonctionCounts", departementCount);
+        return "user-getempcountbyfon";
     }
 }

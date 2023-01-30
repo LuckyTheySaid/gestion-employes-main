@@ -1,5 +1,7 @@
 package com.gestemployesDFM.Service;
 
+import com.gestemployesDFM.dto.DepartementCountDTO;
+import com.gestemployesDFM.dto.FonctionCountDTO;
 import com.gestemployesDFM.entity.Departement;
 import com.gestemployesDFM.entity.Fonction;
 import com.gestemployesDFM.repository.DepartementRepo;
@@ -24,6 +26,11 @@ public class DepartementService {
     public void delete(long id) {
 
         drepo.deleteById(id);
+    }
+
+    public List<DepartementCountDTO> getDepartementCounts() {
+
+        return drepo.getDepartementcount();
     }
 
 }
